@@ -157,6 +157,101 @@
 
     </div>
 
+    {{-- Currency Exchange Widget --}}
+    <div class="card currency-card h-100">
+
+        <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between align-items-start mb-4">
+                <div>
+                    <h5 class="mb-1">Kurs Mata Uang</h5>
+                    <p class="text-muted small mb-0">
+                        Referensi dari IDR
+                    </p>
+                </div>
+
+                <div class="currency-icon">
+                    <i class="bi bi-currency-exchange"></i>
+                </div>
+            </div>
+
+            @if (!empty($currencyRates['rates']))
+
+                <div class="currency-list">
+
+                    @php
+                        $currencySymbols = [
+                            'USD' => '$',
+                            'EUR' => '€',
+                            'JPY' => '¥',
+                            'SGD' => 'S$',
+                            'GBP' => '£',
+                        ];
+
+                        $currencyNames = [
+                            'USD' => 'US Dollar',
+                            'EUR' => 'Euro',
+                            'JPY' => 'Japanese Yen',
+                            'SGD' => 'Singapore Dollar',
+                            'GBP' => 'British Pound',
+                        ];
+                    @endphp
+
+                    @foreach ($currencyRates['rates'] as $code => $rate)
+
+                        <div class="currency-item">
+
+                            <div class="currency-info">
+                                <div class="currency-code">
+                                    {{ $code }}
+                                </div>
+
+                                <div class="currency-name">
+                                    {{ $currencyNames[$code] ?? $code }}
+                                </div>
+                            </div>
+
+                            <div class="currency-value">
+                                {{ $currencySymbols[$code] ?? '' }}
+                                {{ number_format(1000000 * $rate, 2, ',', '.') }}
+                            </div>
+
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+                @if ($currencyRates['date'])
+                    <p class="text-muted small mt-3 mb-0">
+                        <i class="bi bi-clock me-1"></i>
+                        Data per
+                        {{ \Carbon\Carbon::parse($currencyRates['date'])->format('d M Y') }}
+                    </p>
+                @endif
+
+            @else
+
+                <div class="text-center py-4">
+                    <i class="bi bi-cloud-slash fs-2 text-muted"></i>
+
+                    <p class="text-muted small mt-2 mb-0">
+                        Kurs mata uang sementara tidak tersedia.
+                    </p>
+                </div>
+
+            @endif
+
+            <div class="currency-disclaimer mt-4">
+                <i class="bi bi-info-circle me-1"></i>
+                Nilai di atas merupakan referensi untuk
+                Rp1.000.000, bukan kurs transaksi aktual.
+            </div>
+
+        </div>
+
+    </div>
+
     {{-- Recent transactions --}}
     <div class="card dashboard-section-card border-0 rounded-4">
 

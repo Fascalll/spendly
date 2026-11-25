@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class TransactionController extends Controller
 {
@@ -61,6 +62,15 @@ class TransactionController extends Controller
     {
         $validated = $this->validateTransaction($request);
 
+        $receiptPath = null;
+
+        if ($request->hasFile('receipt')) {
+            $receiptPath = $request->file('receipt')
+                ->store('receipts/' . auth()->id(), 'local');
+        }
+
+        $validated['receipt_image_path'] = $receiptPath;
+
         auth()->user()->transactions()->create($validated);
 
         return redirect()
@@ -84,6 +94,19 @@ class TransactionController extends Controller
 
         $validated = $this->validateTransaction($request);
 
+        if ($request->hasFile('receipt')) {
+            $oldReceipt = $transaction->receipt_image_path;
+
+            $newReceipt = $request->file('receipt')
+                ->store('receipts/' . auth()->id(), 'local');
+
+            $validated['receipt_image_path'] = $newReceipt;
+
+            if ($oldReceipt) {
+                Storage::disk('local')->delete($oldReceipt);
+            }
+        }
+
         $transaction->update($validated);
 
         return redirect()
@@ -95,11 +118,32 @@ class TransactionController extends Controller
     {
         $transaction = auth()->user()->transactions()->findOrFail($id);
 
+        if ($transaction->receipt_image_path) {
+            Storage::disk('local')->delete(
+                $transaction->receipt_image_path
+            );
+        }
+
         $transaction->delete();
 
         return redirect()
             ->route('transactions.index')
             ->with('success', 'Transaksi berhasil dihapus.');
+    }
+
+    public function receipt(string $id)
+    {
+        $transaction = auth()->user()->transactions()->findOrFail($id);
+
+        abort_unless($transaction->receipt_image_path, 404);
+
+        $path = $transaction->receipt_image_path;
+
+        abort_unless(Storage::disk('local')->exists($path), 404);
+
+        return response()->file(
+            Storage::disk('local')->path($path)
+        );
     }
 
     private function validateTransaction(Request $request): array
@@ -122,6 +166,7 @@ class TransactionController extends Controller
                             });
                     }),
             ],
+
             'amount' => [
                 'required',
                 'numeric',
@@ -129,14 +174,23 @@ class TransactionController extends Controller
                 'min:0.01',
                 'max:9999999999999.99',
             ],
+
             'date' => [
                 'required',
                 'date',
             ],
+
             'description' => [
                 'nullable',
                 'string',
                 'max:1000',
+            ],
+
+            'receipt' => [
+                'nullable',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:5120',
             ],
         ], [
             'type.required' => 'Jenis transaksi wajib dipilih.',
@@ -151,6 +205,9 @@ class TransactionController extends Controller
             'date.required' => 'Tanggal transaksi wajib diisi.',
             'date.date' => 'Tanggal transaksi tidak valid.',
             'description.max' => 'Deskripsi maksimal 1000 karakter.',
+            'receipt.image' => 'File harus berupa gambar.',
+            'receipt.mimes' => 'Struk harus berformat JPG, PNG, atau WEBP.',
+            'receipt.max' => 'Ukuran struk maksimal 5 MB.',
         ]);
     }
 

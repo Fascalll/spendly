@@ -155,7 +155,13 @@
 
                             <td class="text-end">
                                 <div class="d-inline-flex gap-1">
-
+                                    @if ($transaction->receipt_image_path)
+                                    <a href="{{ route('transactions.receipt', $transaction) }}"
+                                        class="btn btn-sm btn-light" target="_blank" aria-label="Lihat struk"
+                                        title="Lihat struk">
+                                        <i class="bi bi-receipt"></i>
+                                    </a>
+                                    @endif
                                     <a href="{{ route('transactions.edit', $transaction) }}"
                                         class="btn btn-sm btn-light" aria-label="Edit transaksi" title="Edit">
                                         <i class="bi bi-pencil"></i>

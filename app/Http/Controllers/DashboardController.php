@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Services\CurrencyService;
 
 class DashboardController extends Controller
 {
     public function index(Request $request)
     {
+        $currencyRates = app(CurrencyService::class)->getRates();
         $selectedMonth = $request->query('month');
 
         try {
@@ -78,7 +80,7 @@ class DashboardController extends Controller
             'transactionCount' => $transactionCount,
             'recentTransactions' => $recentTransactions,
             'currentMonth' => $currentMonth,
-
+            'currencyRates' => $currencyRates,
             // Chart data
             'incomeExpenseChart' => [
                 'income' => $income,

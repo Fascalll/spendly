@@ -10,16 +10,24 @@
     </div>
 
     <div class="sidebar-user">
-        <div class="user-avatar">
-            {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-        </div>
+        <a href="{{ route('profile.edit') }}" class="sidebar-user-link">
 
-        <div class="user-info">
-            <span class="user-name">{{ auth()->user()->name }}</span>
-            <span class="user-label">Personal account</span>
-        </div>
+            @if (auth()->user()->profile_photo_path)
+            <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" alt="Foto profil"
+                class="user-avatar user-avatar-image">
+            @else
+            <div class="user-avatar">
+                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+            </div>
+            @endif
+
+            <div class="user-info">
+                <span class="user-name">{{ auth()->user()->name }}</span>
+                <span class="user-label">Personal account</span>
+            </div>
+
+        </a>
     </div>
-
     <nav class="sidebar-nav">
         <span class="nav-section-label">MENU</span>
 
@@ -41,6 +49,11 @@
         <a href="#" class="sidebar-nav-link">
             <i class="bi bi-file-earmark-bar-graph"></i>
             <span>Laporan</span>
+        </a>
+        <a href="{{ route('profile.edit') }}"
+            class="sidebar-nav-link {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+            <i class="bi bi-person-circle"></i>
+            <span>Profil</span>
         </a>
     </nav>
 
@@ -75,5 +88,9 @@
     <a href="#" class="mobile-nav-link">
         <i class="bi bi-file-earmark-bar-graph"></i>
         <span>Laporan</span>
+    </a>
+    <a href="{{ route('profile.edit') }}" class="mobile-nav-link {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+        <i class="bi bi-person-circle"></i>
+        <span>Profil</span>
     </a>
 </nav>

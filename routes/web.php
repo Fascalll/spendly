@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\ProfileController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])
@@ -31,11 +32,21 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 Route::middleware('auth')->group(function () {
     Route::resource('categories', CategoryController::class)
         ->except(['show']);
-});
 
-Route::middleware('auth')->group(function () {
     Route::resource('transactions', TransactionController::class)
         ->except(['show']);
+
+    Route::get('/transactions/{transaction}/receipt', [TransactionController::class, 'receipt'])
+        ->name('transactions.receipt');
+
+    Route::get('/profile', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
+
+    Route::put('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
+
+    Route::delete('/profile/photo', [ProfileController::class, 'removePhoto'])
+        ->name('profile.remove-photo');
 });
 
 Route::get('/', function () {
@@ -43,4 +54,3 @@ Route::get('/', function () {
         ? redirect()->route('dashboard')
         : redirect()->route('login');
 });
-

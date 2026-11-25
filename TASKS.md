@@ -180,7 +180,7 @@ Income categories:
 - [x] Establish the color palette.
 - [x] Create responsive layouts for desktop and mobile.
 - [x] Create consistent form and button styles.
-- [ ] Create empty states and loading states.
+- [x] Create empty states and loading states.
 
 ### Design direction
 
@@ -208,7 +208,6 @@ Suggested design tokens:
 
 Suggested typography: Plus Jakarta Sans and Sora.
 
-**Status:** Not started.
 
 ## Phase 5 — Dashboard
 
@@ -235,7 +234,6 @@ Suggested typography: Plus Jakarta Sans and Sora.
 - [x] Render charts using Chart.js.
 - [x] Ensure all dashboard queries respect user ownership.
 
-**Status:** Not started.
 
 ## Phase 6 — Category Management (CRUD)
 
@@ -250,7 +248,6 @@ Suggested typography: Plus Jakarta Sans and Sora.
 - [x] Add default category handling.
 - [x] Test all CRUD operations.
 
-**Status:** Not started.
 
 ## Phase 7 — Transaction Management (CRUD)
 
@@ -304,7 +301,6 @@ Suggested typography: Plus Jakarta Sans and Sora.
 - [x] Test zero and large amounts.
 - [x] Ensure amounts are not calculated using unsafe floating-point arithmetic.
 
-**Status:** Not started.
 
 ## Phase 8 — DataTables Integration
 
@@ -318,37 +314,36 @@ Suggested typography: Plus Jakarta Sans and Sora.
 - [x] Verify that transaction data is scoped to the authenticated user.
 - [x] Test with a larger set of transactions.
 
-**Status:** Not started.
 
 ## Phase 9 — Profile and Image Processing
 
 ### Profile management
 
-- [ ] Create profile page.
-- [ ] Display user information.
-- [ ] Allow users to update their name.
-- [ ] Allow users to update their email.
-- [ ] Validate profile changes.
-- [ ] Handle duplicate email validation.
+- [x] Create profile page.
+- [x] Display user information.
+- [x] Allow users to update their name.
+- [x] Allow users to update their email.
+- [x] Validate profile changes.
+- [x] Handle duplicate email validation.
 
 ### Profile picture
 
-- [ ] Allow profile picture uploads.
-- [ ] Validate image type and file size.
-- [ ] Store images using Laravel storage.
-- [ ] Display profile pictures.
-- [ ] Allow replacing existing pictures.
-- [ ] Remove old images safely.
-- [ ] Prevent unsafe file uploads.
+- [x] Allow profile picture uploads.
+- [x] Validate image type and file size.
+- [x] Store images using Laravel storage.
+- [x] Display profile pictures.
+- [x] Allow replacing existing pictures.
+- [x] Remove old images safely.
+- [x] Prevent unsafe file uploads.
 
 ### Receipt images
 
-- [ ] Allow optional receipt image uploads on transactions.
-- [ ] Validate receipt images.
-- [ ] Store receipt images securely.
-- [ ] Display receipt images where appropriate.
-- [ ] Allow receipt replacement and deletion.
-- [ ] Ensure users cannot access other users' private receipt files.
+- [x] Allow optional receipt image uploads on transactions.
+- [x] Validate receipt images.
+- [x] Store receipt images securely.
+- [x] Display receipt images where appropriate.
+- [x] Allow receipt replacement and deletion.
+- [x] Ensure users cannot access other users' private receipt files.
 
 **Status:** Not started.
 
