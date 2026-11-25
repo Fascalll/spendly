@@ -93,8 +93,6 @@ class ExcelService
 
         $this->formatSheet($sheet, 2);
 
-        $this->addCategoryDropdowns($spreadsheet, $sheet, $user);
-
         return $spreadsheet;
     }
 

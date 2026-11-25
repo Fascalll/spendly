@@ -8,6 +8,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\JournalEntryController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])
@@ -49,6 +50,7 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/profile/photo', [ProfileController::class, 'removePhoto'])
         ->name('profile.remove-photo');
+
     Route::get('/reports', [ReportController::class, 'index'])
         ->name('reports.index');
 
@@ -63,6 +65,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/transactions/import-excel', [ExcelController::class, 'import'])
         ->name('transactions.import');
+
+    Route::resource('journal', JournalEntryController::class)
+        ->parameters(['journal' => 'journal'])
+        ->names('journal');
 });
 
 Route::get('/', function () {
@@ -70,3 +76,4 @@ Route::get('/', function () {
         ? redirect()->route('dashboard')
         : redirect()->route('login');
 });
+
