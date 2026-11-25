@@ -38,25 +38,38 @@ class DashboardController extends Controller
                 $endOfMonth->toDateString(),
             ]);
 
+        // Monthly income
         $income = (clone $monthlyTransactions)
             ->where('type', 'income')
             ->sum('amount');
 
+        // Monthly expense
         $expense = (clone $monthlyTransactions)
             ->where('type', 'expense')
             ->sum('amount');
 
+        // Monthly transaction count
         $transactionCount = (clone $monthlyTransactions)
             ->count();
 
+        // Monthly balance
         $balance = $income - $expense;
 
+        // Recent transactions: latest 5 across all months
         $recentTransactions = (clone $transactions)
             ->with('category')
             ->orderByDesc('date')
             ->orderByDesc('created_at')
             ->take(5)
             ->get();
+
+        // Monthly expenses grouped by category for the chart
+        $expenseByCategory = (clone $monthlyTransactions)
+            ->where('type', 'expense')
+            ->with('category')
+            ->get()
+            ->groupBy(fn ($transaction) => $transaction->category->name ?? 'Tanpa kategori')
+            ->map(fn ($group) => $group->sum('amount'));
 
         return view('dashboard', [
             'income' => $income,
@@ -65,6 +78,15 @@ class DashboardController extends Controller
             'transactionCount' => $transactionCount,
             'recentTransactions' => $recentTransactions,
             'currentMonth' => $currentMonth,
+
+            // Chart data
+            'incomeExpenseChart' => [
+                'income' => $income,
+                'expense' => $expense,
+            ],
+
+            'expenseCategoryChart' => $expenseByCategory,
         ]);
     }
 }
+

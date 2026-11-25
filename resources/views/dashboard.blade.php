@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'Dashboard')
@@ -6,10 +5,7 @@
 @section('content')
 <div class="container-fluid px-4 px-lg-5 py-4 py-lg-5">
 
-    <x-page-header
-        title="Dashboard"
-        subtitle="Pantau arus keuanganmu, biar nggak boncos."
-    />
+    <x-page-header title="Dashboard" subtitle="Pantau arus keuanganmu, biar nggak boncos." />
 
     {{-- Month filter --}}
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
@@ -21,13 +17,8 @@
         </div>
 
         <form action="{{ route('dashboard') }}" method="GET" class="d-flex gap-2">
-            <input
-                type="month"
-                name="month"
-                value="{{ $currentMonth->format('Y-m') }}"
-                class="form-control"
-                aria-label="Pilih bulan"
-            >
+            <input type="month" name="month" value="{{ $currentMonth->format('Y-m') }}" class="form-control"
+                aria-label="Pilih bulan">
 
             <button class="btn btn-primary px-3" type="submit">
                 <i class="bi bi-filter me-1"></i>
@@ -121,6 +112,51 @@
 
     </div>
 
+    {{-- Dashboard charts --}}
+    <div class="row g-3 g-lg-4 mb-4">
+
+        {{-- Income vs Expense --}}
+        <div class="col-12 col-lg-5">
+            <div class="card dashboard-section-card h-100 p-4">
+                <div class="mb-3">
+                    <h5 class="mb-1">Pemasukan vs Pengeluaran</h5>
+                    <p class="text-muted small mb-0">
+                        Perbandingan keuangan bulan ini
+                    </p>
+                </div>
+
+                <div class="dashboard-chart-container dashboard-chart-bar">
+                    <canvas id="incomeExpenseChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        {{-- Expense by category --}}
+        <div class="col-12 col-lg-7">
+            <div class="card dashboard-section-card h-100 p-4">
+                <div class="mb-3">
+                    <h5 class="mb-1">Pengeluaran berdasarkan kategori</h5>
+                    <p class="text-muted small mb-0">
+                        Distribusi pengeluaran bulan ini
+                    </p>
+                </div>
+
+                @if ($expenseCategoryChart->isEmpty())
+                    <x-empty-state
+                        icon="bi-pie-chart"
+                        title="Belum ada pengeluaran"
+                        message="Pengeluaran berdasarkan kategori akan muncul di sini."
+                    />
+                @else
+                    <div class="dashboard-chart-container dashboard-chart-doughnut">
+                        <canvas id="expenseCategoryChart"></canvas>
+                    </div>
+                @endif
+            </div>
+        </div>
+
+    </div>
+
     {{-- Recent transactions --}}
     <div class="card dashboard-section-card border-0 rounded-4">
 
@@ -151,42 +187,40 @@
 
                 <tbody>
                     @forelse ($recentTransactions as $transaction)
-                        <tr>
-                            <td class="ps-4">
-                                <div class="transaction-name">
-                                    {{ $transaction->description ?: 'Transaksi' }}
-                                </div>
-                            </td>
+                    <tr>
+                        <td class="ps-4">
+                            <div class="transaction-name">
+                                {{ $transaction->description ?: 'Transaksi' }}
+                            </div>
+                        </td>
 
-                            <td>
-                                <span class="category-badge">
-                                    {{ $transaction->category->name ?? 'Tanpa kategori' }}
-                                </span>
-                            </td>
+                        <td>
+                            <span class="category-badge">
+                                {{ $transaction->category->name ?? 'Tanpa kategori' }}
+                            </span>
+                        </td>
 
-                            <td>
-                                <span class="text-muted small">
-                                    {{ \Illuminate\Support\Carbon::parse($transaction->date)->translatedFormat('d M Y') }}
-                                </span>
-                            </td>
+                        <td>
+                            <span class="text-muted small">
+                                {{ \Illuminate\Support\Carbon::parse($transaction->date)->translatedFormat('d M Y') }}
+                            </span>
+                        </td>
 
-                            <td class="text-end pe-4">
-                                <span class="fw-semibold {{ $transaction->type === 'income' ? 'text-income' : 'text-expense' }}">
-                                    {{ $transaction->type === 'income' ? '+' : '-' }}
-                                    Rp {{ number_format($transaction->amount, 0, ',', '.') }}
-                                </span>
-                            </td>
-                        </tr>
+                        <td class="text-end pe-4">
+                            <span
+                                class="fw-semibold {{ $transaction->type === 'income' ? 'text-income' : 'text-expense' }}">
+                                {{ $transaction->type === 'income' ? '+' : '-' }}
+                                Rp {{ number_format($transaction->amount, 0, ',', '.') }}
+                            </span>
+                        </td>
+                    </tr>
                     @empty
-                        <tr>
-                            <td colspan="4" class="p-0">
-                                <x-empty-state
-                                    icon="bi-wallet2"
-                                    title="Belum ada transaksi"
-                                    message="Transaksi yang kamu catat akan muncul di sini."
-                                />
-                            </td>
-                        </tr>
+                    <tr>
+                        <td colspan="4" class="p-0">
+                            <x-empty-state icon="bi-wallet2" title="Belum ada transaksi"
+                                message="Transaksi yang kamu catat akan muncul di sini." />
+                        </td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>
@@ -197,3 +231,127 @@
 </div>
 @endsection
 
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const Chart = window.Chart;
+
+        if (!Chart) return;
+
+        // Income vs Expense Chart
+        const incomeExpenseCanvas = document.getElementById('incomeExpenseChart');
+
+        if (incomeExpenseCanvas) {
+            new Chart(incomeExpenseCanvas, {
+                type: 'bar',
+                data: {
+                    labels: ['Pemasukan', 'Pengeluaran'],
+                    datasets: [{
+                        label: 'Jumlah (Rp)',
+                        data: [
+                            {{ $incomeExpenseChart['income'] }},
+                            {{ $incomeExpenseChart['expense'] }}
+                        ],
+                        backgroundColor: [
+                            '#16A36A',
+                            '#E65C5C'
+                        ],
+                        borderRadius: 8,
+                        borderSkipped: false,
+                        maxBarThickness: 70
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return 'Rp ' + new Intl.NumberFormat('id-ID').format(context.raw);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function (value) {
+                                    return 'Rp ' + new Intl.NumberFormat('id-ID', {
+                                        notation: 'compact'
+                                    }).format(value);
+                                }
+                            },
+                            grid: {
+                                color: '#E8EAF0'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Expense by Category Chart
+        const expenseCategoryCanvas = document.getElementById('expenseCategoryChart');
+
+        if (expenseCategoryCanvas) {
+            new Chart(expenseCategoryCanvas, {
+                type: 'doughnut',
+                data: {
+                    labels: {!! json_encode($expenseCategoryChart->keys()->values()) !!},
+                    datasets: [{
+                        data: {!! json_encode($expenseCategoryChart->values()->values()) !!},
+                        backgroundColor: [
+                            '#536DFE',
+                            '#16A36A',
+                            '#E65C5C',
+                            '#F4B740',
+                            '#8B5CF6',
+                            '#14B8A6',
+                            '#F97316',
+                            '#64748B',
+                            '#EC4899'
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 16,
+                                usePointStyle: true,
+                                pointStyle: 'circle'
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    const label = context.label || '';
+                                    const amount = new Intl.NumberFormat('id-ID').format(context.raw);
+
+                                    return label + ': Rp ' + amount;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    });
+</script>
+@endpush

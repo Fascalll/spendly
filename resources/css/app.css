@@ -583,3 +583,30 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* ==========================================
+   SPENDLY DASHBOARD CHARTS
+========================================== */
+
+.dashboard-chart-container {
+    position: relative;
+    width: 100%;
+}
+
+.dashboard-chart-bar {
+    height: 280px;
+}
+
+.dashboard-chart-doughnut {
+    height: 320px;
+}
+
+@media (max-width: 576px) {
+    .dashboard-chart-bar {
+        height: 240px;
+    }
+
+    .dashboard-chart-doughnut {
+        height: 300px;
+    }
+}
+
