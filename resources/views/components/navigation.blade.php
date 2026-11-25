@@ -29,11 +29,10 @@
             <span>Dashboard</span>
         </a>
 
-        <a href="#" class="sidebar-nav-link">
+        <a href="{{ route('transactions.index') }}" class="sidebar-nav-link">
             <i class="bi bi-arrow-left-right"></i>
             <span>Transaksi</span>
         </a>
-
         <a href="{{ route('categories.index') }}"
             class="sidebar-nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
             <i class="bi bi-tags"></i>
@@ -65,11 +64,10 @@
         <span>Home</span>
     </a>
 
-    <a href="#" class="mobile-nav-link">
-        <i class="bi bi-arrow-left-right"></i>
-        <span>Transaksi</span>
-    </a>
-
+<a href="{{ route('transactions.index') }}" class="mobile-nav-link">
+    <i class="bi bi-arrow-left-right"></i>
+    <span>Transaksi</span>
+</a>
     <a href="{{ route('categories.index') }}"
         class="mobile-nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
         <i class="bi bi-tags"></i>

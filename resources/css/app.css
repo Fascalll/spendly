@@ -665,4 +665,182 @@ h1, h2, h3, h4, h5, h6 {
 .min-width-0 {
     min-width: 0;
 }
+/* =========================
+   TRANSACTION MANAGEMENT
+========================= */
 
+.transaction-filter-card,
+.transaction-list-card,
+.transaction-form-card {
+    background: var(--spendly-surface);
+    border: 1px solid var(--spendly-border);
+    border-radius: 16px;
+}
+
+.transaction-filter-card .form-label,
+.transaction-form-card .form-label {
+    font-weight: 600;
+}
+
+.transaction-table {
+    --bs-table-bg: transparent;
+    --bs-table-border-color: var(--spendly-border);
+}
+
+.transaction-table thead th {
+    padding: 1rem;
+    color: var(--spendly-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: #FAFBFC;
+    white-space: nowrap;
+}
+
+.transaction-table tbody td {
+    padding: 1rem;
+}
+
+.transaction-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.transaction-description {
+    color: var(--spendly-text);
+    font-weight: 600;
+    max-width: 260px;
+    overflow-wrap: anywhere;
+}
+
+.category-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.75rem;
+    border-radius: 50px;
+    background: var(--spendly-background);
+    color: var(--spendly-muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.transaction-type {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.income-type,
+.amount-income {
+    color: var(--spendly-income);
+}
+
+.expense-type,
+.amount-expense {
+    color: var(--spendly-expense);
+}
+
+.amount-income,
+.amount-expense {
+    font-weight: 700;
+}
+
+.transaction-mobile-list {
+    padding: 0 1rem;
+}
+
+.transaction-mobile-item {
+    padding: 1.15rem 0;
+    border-bottom: 1px solid var(--spendly-border);
+}
+
+.transaction-mobile-item:last-child {
+    border-bottom: 0;
+}
+
+.transaction-mobile-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.15rem;
+}
+
+.transaction-type-selector {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.transaction-type-option {
+    cursor: pointer;
+    position: relative;
+}
+
+.transaction-type-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.transaction-type-option span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 1px solid var(--spendly-border);
+    border-radius: 12px;
+    background: var(--spendly-surface);
+    font-weight: 600;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.transaction-type-option input:checked + span {
+    border-color: var(--spendly-primary);
+    background: rgba(83, 109, 254, 0.06);
+    box-shadow: 0 0 0 1px var(--spendly-primary);
+}
+
+.transaction-type-option input:focus-visible + span {
+    outline: 3px solid rgba(83, 109, 254, 0.2);
+    outline-offset: 2px;
+}
+
+.income-option span {
+    color: var(--spendly-income);
+}
+
+.expense-option span {
+    color: var(--spendly-expense);
+}
+
+.transaction-form-card .input-group-text {
+    background: var(--spendly-background);
+    border-color: var(--spendly-border);
+    font-weight: 600;
+}
+
+.transaction-list-card .pagination {
+    margin-bottom: 0;
+}
+
+@media (max-width: 767.98px) {
+    .transaction-filter-card .card-body {
+        padding: 1rem;
+    }
+
+    .transaction-type-selector {
+        gap: 0.5rem;
+    }
+
+    .transaction-type-option span {
+        padding: 0.85rem 0.5rem;
+        font-size: 0.9rem;
+    }
+}

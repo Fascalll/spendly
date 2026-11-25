@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TransactionController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])
@@ -29,6 +30,11 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 Route::middleware('auth')->group(function () {
     Route::resource('categories', CategoryController::class)
+        ->except(['show']);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::resource('transactions', TransactionController::class)
         ->except(['show']);
 });
 
