@@ -124,62 +124,62 @@ The coding assistant is responsible for implementing the application step by ste
 
 ### Eloquent models
 
-- [ ] Configure `User` model.
-- [ ] Create `Category` model.
-- [ ] Create `Transaction` model.
-- [ ] Define User-to-Transaction relationship.
-- [ ] Define User-to-Category relationship.
-- [ ] Define Category-to-Transaction relationship.
-- [ ] Define appropriate casts.
-- [ ] Review mass assignment protection.
+- [x] Configure `User` model.
+- [x] Create `Category` model.
+- [x] Create `Transaction` model.
+- [x] Define User-to-Transaction relationship.
+- [x] Define User-to-Category relationship.
+- [x] Define Category-to-Transaction relationship.
+- [x] Define appropriate casts.
+- [x] Review mass assignment protection.
 
 ### Default categories
 
 Expense categories:
 
-- Makan & Minum
-- Transportasi
-- Belanja
-- Tagihan
-- Hiburan
-- Kesehatan
-- Pendidikan
-- Kos & Tempat Tinggal
-- Lainnya
+- [x] Makan & Minum
+- [x] Transportasi
+- [x] Belanja
+- [x] Tagihan
+- [x] Hiburan
+- [x] Kesehatan
+- [x] Pendidikan
+- [x] Kos & Tempat Tinggal
+- [x] Lainnya
 
 Income categories:
 
-- Gaji
-- Freelance
-- Bisnis
-- Uang Saku
-- Hadiah
-- Investasi
-- Lainnya
+- [x] Gaji
+- [x] Freelance
+- [x] Bisnis
+- [x] Uang Saku
+- [x] Hadiah
+- [x] Investasi
+- [x] Lainnya
 
 ### Seeders
 
-- [ ] Create `CategorySeeder`.
-- [ ] Insert default Indonesian categories.
-- [ ] Ensure categories are available to users appropriately.
-- [ ] Avoid creating duplicate categories when seeding repeatedly.
-- [ ] Create realistic Indonesian sample transactions for development.
+- [x] Create `CategorySeeder`.
+- [x] Insert default Indonesian categories.
+- [x] Ensure categories are available to users appropriately.
+- [x] Avoid creating duplicate categories when seeding repeatedly.
+- [x] Create realistic Indonesian sample transactions for development.
 
 **Status:** Not started.
 
 ## Phase 4 — Application Layout and UI Foundation
 
-- [ ] Create the main Blade layout.
-- [ ] Create reusable navigation components.
-- [ ] Create sidebar or floating navigation.
-- [ ] Create reusable page header.
-- [ ] Create reusable alert and notification components.
-- [ ] Configure Bootstrap 5 styles.
-- [ ] Configure Bootstrap Icons.
-- [ ] Establish the application typography.
-- [ ] Establish the color palette.
-- [ ] Create responsive layouts for desktop and mobile.
-- [ ] Create consistent form and button styles.
+- [x] Create the main Blade layout.
+- [x] Create reusable navigation components.
+- [x] Create sidebar or floating navigation.
+- [x] Create reusable page header.
+- [x] Create reusable alert and notification components.
+- [x] Configure Bootstrap 5 styles.
+- [x] Configure Bootstrap Icons.
+- [x] Establish the application typography.
+- [x] Establish the color palette.
+- [x] Create responsive layouts for desktop and mobile.
+- [x] Create consistent form and button styles.
 - [ ] Create empty states and loading states.
 
 ### Design direction
