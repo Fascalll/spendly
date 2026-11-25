@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700&display=swap');
+
+:root {
+    --spendly-primary: #536DFE;
+    --spendly-background: #F7F8FA;
+    --spendly-surface: #FFFFFF;
+    --spendly-text: #202433;
+    --spendly-muted: #777F91;
+    --spendly-income: #16A36A;
+    --spendly-expense: #E65C5C;
+    --spendly-border: #E8EAF0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--spendly-background);
+    color: var(--spendly-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sora', sans-serif;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--spendly-primary);
+    --bs-btn-border-color: var(--spendly-primary);
+    --bs-btn-hover-bg: #4059E8;
+    --bs-btn-hover-border-color: #4059E8;
+}
+
+.form-control,
+.form-select {
+    border-color: var(--spendly-border);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--spendly-primary);
+    box-shadow: 0 0 0 0.2rem rgba(83, 109, 254, 0.15);
+}
