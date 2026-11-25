@@ -31,17 +31,10 @@ class TransactionController extends Controller
             $query->whereDate('date', '<=', $request->input('end_date'));
         }
 
-        if ($request->filled('search')) {
-            $search = $request->input('search');
-
-            $query->where('description', 'like', "%{$search}%");
-        }
-
         $transactions = $query
             ->orderByDesc('date')
             ->orderByDesc('created_at')
-            ->paginate(15)
-            ->withQueryString();
+            ->get();
 
         $categories = Category::where(function ($query) use ($user) {
             $query->whereNull('user_id')

@@ -58,16 +58,15 @@
 
 {{-- Mobile bottom navigation --}}
 <nav class="mobile-bottom-nav d-lg-none">
-    <a href="{{ route('dashboard') }}"
-        class="mobile-nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+    <a href="{{ route('dashboard') }}" class="mobile-nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
         <i class="bi bi-grid-1x2"></i>
         <span>Home</span>
     </a>
 
-<a href="{{ route('transactions.index') }}" class="mobile-nav-link">
-    <i class="bi bi-arrow-left-right"></i>
-    <span>Transaksi</span>
-</a>
+    <a href="{{ route('transactions.index') }}" class="mobile-nav-link">
+        <i class="bi bi-arrow-left-right"></i>
+        <span>Transaksi</span>
+    </a>
     <a href="{{ route('categories.index') }}"
         class="mobile-nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
         <i class="bi bi-tags"></i>

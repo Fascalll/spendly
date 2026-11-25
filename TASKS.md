@@ -245,7 +245,7 @@ Suggested typography: Plus Jakarta Sans and Sora.
 - [x] Implement category editing.
 - [x] Implement category deletion.
 - [x] Validate category name and type.
-- [ ] Prevent inappropriate deletion of categories with existing transactions.
+- [x] Prevent inappropriate deletion of categories with existing transactions.
 - [x] Restrict category operations to the appropriate user.
 - [x] Add default category handling.
 - [x] Test all CRUD operations.
@@ -256,67 +256,67 @@ Suggested typography: Plus Jakarta Sans and Sora.
 
 ### Create transactions
 
-- [ ] Create transaction listing page.
-- [ ] Create transaction form.
-- [ ] Implement income creation.
-- [ ] Implement expense creation.
-- [ ] Select a category.
-- [ ] Enter amount.
-- [ ] Enter transaction date.
-- [ ] Enter description.
-- [ ] Validate all submitted data.
-- [ ] Save transactions for the authenticated user.
+- [x] Create transaction listing page.
+- [x] Create transaction form.
+- [x] Implement income creation.
+- [x] Implement expense creation.
+- [x] Select a category.
+- [x] Enter amount.
+- [x] Enter transaction date.
+- [x] Enter description.
+- [x] Validate all submitted data.
+- [x] Save transactions for the authenticated user.
 
 ### Read transactions
 
-- [ ] Display transaction history.
-- [ ] Display income and expense labels.
-- [ ] Format amounts in IDR.
-- [ ] Format dates in Indonesian.
-- [ ] Display associated categories.
-- [ ] Add transaction detail view if useful.
+- [x] Display transaction history.
+- [x] Display income and expense labels.
+- [x] Format amounts in IDR.
+- [x] Format dates in Indonesian.
+- [x] Display associated categories.
+- [x] Add transaction detail view if useful.
 
 ### Update transactions
 
-- [ ] Edit transaction details.
-- [ ] Validate edited information.
-- [ ] Ensure users can only edit their own transactions.
+- [x] Edit transaction details.
+- [x] Validate edited information.
+- [x] Ensure users can only edit their own transactions.
 
 ### Delete transactions
 
-- [ ] Delete transactions.
-- [ ] Add confirmation before deletion.
-- [ ] Ensure users can only delete their own transactions.
+- [x] Delete transactions.
+- [x] Add confirmation before deletion.
+- [x] Ensure users can only delete their own transactions.
 
 ### Transaction filters
 
-- [ ] Filter by income or expense.
-- [ ] Filter by category.
-- [ ] Filter by date range.
-- [ ] Search transaction descriptions.
-- [ ] Add pagination or DataTables integration.
+- [x] Filter by income or expense.
+- [x] Filter by category.
+- [x] Filter by date range.
+- [x] Search transaction descriptions.
+- [x] Add pagination or DataTables integration.
 
 ### Financial correctness
 
-- [ ] Verify income calculations.
-- [ ] Verify expense calculations.
-- [ ] Verify balance calculations.
-- [ ] Test zero and large amounts.
-- [ ] Ensure amounts are not calculated using unsafe floating-point arithmetic.
+- [x] Verify income calculations.
+- [x] Verify expense calculations.
+- [x] Verify balance calculations.
+- [x] Test zero and large amounts.
+- [x] Ensure amounts are not calculated using unsafe floating-point arithmetic.
 
 **Status:** Not started.
 
 ## Phase 8 — DataTables Integration
 
-- [ ] Integrate DataTables with Bootstrap 5.
-- [ ] Apply DataTables to transaction history.
-- [ ] Configure pagination.
-- [ ] Configure searching.
-- [ ] Configure sorting.
-- [ ] Configure responsive behavior.
-- [ ] Localize DataTables interface into Indonesian.
-- [ ] Verify that transaction data is scoped to the authenticated user.
-- [ ] Test with a larger set of transactions.
+- [x] Integrate DataTables with Bootstrap 5.
+- [x] Apply DataTables to transaction history.
+- [x] Configure pagination.
+- [x] Configure searching.
+- [x] Configure sorting.
+- [x] Configure responsive behavior.
+- [x] Localize DataTables interface into Indonesian.
+- [x] Verify that transaction data is scoped to the authenticated user.
+- [x] Test with a larger set of transactions.
 
 **Status:** Not started.
 

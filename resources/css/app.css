@@ -844,3 +844,108 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 0.9rem;
     }
 }
+/* =========================
+   DATATABLES
+========================= */
+
+#transactions-table_wrapper {
+    padding: 1rem;
+}
+
+#transactions-table_wrapper .dt-layout-row {
+    margin-bottom: 0.75rem;
+}
+
+#transactions-table_wrapper .dt-search input,
+#transactions-table_wrapper .dt-length select {
+    border: 1px solid var(--spendly-border);
+    border-radius: 8px;
+    padding: 0.45rem 0.65rem;
+}
+
+#transactions-table_wrapper .dt-search input:focus,
+#transactions-table_wrapper .dt-length select:focus {
+    border-color: var(--spendly-primary);
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(83, 109, 254, 0.15);
+}
+
+#transactions-table_wrapper .dt-info {
+    color: var(--spendly-muted);
+    font-size: 0.85rem;
+}
+
+#transactions-table_wrapper .pagination {
+    margin-bottom: 0;
+}
+
+#transactions-table_wrapper .page-link {
+    color: var(--spendly-primary);
+}
+
+#transactions-table_wrapper .page-item.active .page-link {
+    background-color: var(--spendly-primary);
+    border-color: var(--spendly-primary);
+    color: #fff;
+}
+
+#transactions-table_wrapper .page-item.disabled .page-link {
+    color: var(--spendly-muted);
+}
+
+#transactions-table_wrapper .dt-empty {
+    padding: 2rem;
+    color: var(--spendly-muted);
+    text-align: center;
+}
+
+#transactions-table {
+    width: 100% !important;
+}
+
+@media (max-width: 767.98px) {
+    #transactions-table_wrapper {
+        padding: 0.75rem;
+    }
+
+    #transactions-table_wrapper .dt-layout-row {
+        row-gap: 0.75rem;
+    }
+
+    #transactions-table_wrapper .dt-search input {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #transactions-table_wrapper .dt-search {
+        width: 100%;
+    }
+}
+/* =========================
+   DATATABLES HORIZONTAL SCROLL
+========================= */
+
+#transactions-table_wrapper .dt-scroll {
+    width: 100%;
+}
+
+#transactions-table_wrapper .dt-scroll-body {
+    overflow-x: auto !important;
+}
+
+#transactions-table_wrapper .dt-scroll-body table {
+    min-width: 900px;
+}
+
+#transactions-table_wrapper .dt-scroll-body::-webkit-scrollbar {
+    height: 8px;
+}
+
+#transactions-table_wrapper .dt-scroll-body::-webkit-scrollbar-thumb {
+    background: #D1D5DB;
+    border-radius: 10px;
+}
+
+#transactions-table_wrapper .dt-scroll-body::-webkit-scrollbar-track {
+    background: var(--spendly-background);
+}
