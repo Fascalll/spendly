@@ -6,6 +6,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ExcelController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])
@@ -47,6 +49,20 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/profile/photo', [ProfileController::class, 'removePhoto'])
         ->name('profile.remove-photo');
+    Route::get('/reports', [ReportController::class, 'index'])
+        ->name('reports.index');
+
+    Route::get('/reports/download', [ReportController::class, 'download'])
+        ->name('reports.download');
+
+    Route::get('/transactions/export-excel', [ExcelController::class, 'export'])
+        ->name('transactions.export');
+
+    Route::get('/transactions/excel-template', [ExcelController::class, 'template'])
+        ->name('transactions.template');
+
+    Route::post('/transactions/import-excel', [ExcelController::class, 'import'])
+        ->name('transactions.import');
 });
 
 Route::get('/', function () {

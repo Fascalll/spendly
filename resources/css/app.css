@@ -1086,3 +1086,24 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.75rem;
     line-height: 1.6;
 }
+/* =================
+   PDF REPORTS
+================= */
+
+.report-card {
+    background: var(--spendly-surface);
+    border: 1px solid var(--spendly-border);
+    border-radius: 16px;
+}
+
+.report-icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: rgba(83, 109, 254, 0.1);
+    color: var(--spendly-primary);
+    font-size: 1.5rem;
+}

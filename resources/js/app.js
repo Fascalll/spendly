@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     new DataTable(table, {
         responsive: false,
-        scrollX: true,
+        scrollX: false,
         pageLength: 10,
         lengthMenu: [10, 15, 25, 50, 100],
         ordering: true,

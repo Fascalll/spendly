@@ -46,10 +46,12 @@
             <i class="bi bi-tags"></i>
             <span>Kategori</span>
         </a>
-        <a href="#" class="sidebar-nav-link">
-            <i class="bi bi-file-earmark-bar-graph"></i>
+
+        <a href="{{ route('reports.index') }}" class="sidebar-nav-link {{ request()->routeIs('reports.*') ? 'active' : '' }}">
+            <i class="bi bi-file-earmark-pdf"></i>
             <span>Laporan</span>
         </a>
+
         <a href="{{ route('profile.edit') }}"
             class="sidebar-nav-link {{ request()->routeIs('profile.*') ? 'active' : '' }}">
             <i class="bi bi-person-circle"></i>
