@@ -610,3 +610,59 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* =========================
+   CATEGORY MANAGEMENT
+========================= */
+
+.category-card,
+.category-form-card {
+    background: var(--spendly-surface);
+    border: 1px solid var(--spendly-border);
+    border-radius: 16px;
+}
+
+.category-card {
+    transition: border-color 0.15s ease;
+}
+
+.category-card:hover {
+    border-color: var(--spendly-primary);
+}
+
+.category-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.15rem;
+}
+
+.expense-category-icon {
+    background: rgba(230, 92, 92, 0.10);
+    color: var(--spendly-expense);
+}
+
+.income-category-icon {
+    background: rgba(22, 163, 106, 0.10);
+    color: var(--spendly-income);
+}
+
+.category-card .dropdown .btn {
+    border: 1px solid var(--spendly-border);
+}
+
+.category-card .dropdown .btn:hover {
+    background: var(--spendly-background);
+}
+
+.category-form-card .form-label {
+    font-weight: 600;
+}
+
+.min-width-0 {
+    min-width: 0;
+}
+

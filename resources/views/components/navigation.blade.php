@@ -34,11 +34,11 @@
             <span>Transaksi</span>
         </a>
 
-        <a href="#" class="sidebar-nav-link">
+        <a href="{{ route('categories.index') }}"
+            class="sidebar-nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
             <i class="bi bi-tags"></i>
             <span>Kategori</span>
         </a>
-
         <a href="#" class="sidebar-nav-link">
             <i class="bi bi-file-earmark-bar-graph"></i>
             <span>Laporan</span>
@@ -70,11 +70,11 @@
         <span>Transaksi</span>
     </a>
 
-    <a href="#" class="mobile-nav-link">
+    <a href="{{ route('categories.index') }}"
+        class="mobile-nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
         <i class="bi bi-tags"></i>
         <span>Kategori</span>
     </a>
-
     <a href="#" class="mobile-nav-link">
         <i class="bi bi-file-earmark-bar-graph"></i>
         <span>Laporan</span>

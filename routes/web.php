@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CategoryController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])
@@ -25,6 +26,11 @@ Route::post('/logout', [AuthController::class, 'logout'])
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware('auth')
     ->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::resource('categories', CategoryController::class)
+        ->except(['show']);
+});
 
 Route::get('/', function () {
     return auth()->check()

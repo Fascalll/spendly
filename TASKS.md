@@ -214,41 +214,41 @@ Suggested typography: Plus Jakarta Sans and Sora.
 
 ### Dashboard information
 
-- [ ] Display personalized greeting.
-- [ ] Display total income.
-- [ ] Display total expenses.
-- [ ] Display current balance.
-- [ ] Display transaction count.
-- [ ] Display recent transactions.
-- [ ] Display income versus expense visualization.
-- [ ] Display expense breakdown by category.
-- [ ] Display current month summary.
-- [ ] Add date or month filtering where appropriate.
-- [ ] Add useful empty states for new accounts.
+- [x] Display personalized greeting.
+- [x] Display total income.
+- [x] Display total expenses.
+- [x] Display current balance.
+- [x] Display transaction count.
+- [x] Display recent transactions.
+- [x] Display income versus expense visualization.
+- [x] Display expense breakdown by category.
+- [x] Display current month summary.
+- [x] Add date or month filtering where appropriate.
+- [x] Add useful empty states for new accounts.
 
 ### Dashboard functionality
 
-- [ ] Create dashboard controller.
-- [ ] Query financial data for the authenticated user.
-- [ ] Calculate totals using safe decimal handling.
-- [ ] Prepare chart data.
-- [ ] Render charts using Chart.js.
-- [ ] Ensure all dashboard queries respect user ownership.
+- [x] Create dashboard controller.
+- [x] Query financial data for the authenticated user.
+- [x] Calculate totals using safe decimal handling.
+- [x] Prepare chart data.
+- [x] Render charts using Chart.js.
+- [x] Ensure all dashboard queries respect user ownership.
 
 **Status:** Not started.
 
 ## Phase 6 — Category Management (CRUD)
 
-- [ ] Create category listing page.
-- [ ] Create category form.
-- [ ] Implement category creation.
-- [ ] Implement category editing.
-- [ ] Implement category deletion.
-- [ ] Validate category name and type.
+- [x] Create category listing page.
+- [x] Create category form.
+- [x] Implement category creation.
+- [x] Implement category editing.
+- [x] Implement category deletion.
+- [x] Validate category name and type.
 - [ ] Prevent inappropriate deletion of categories with existing transactions.
-- [ ] Restrict category operations to the appropriate user.
-- [ ] Add default category handling.
-- [ ] Test all CRUD operations.
+- [x] Restrict category operations to the appropriate user.
+- [x] Add default category handling.
+- [x] Test all CRUD operations.
 
 **Status:** Not started.
 
