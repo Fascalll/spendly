@@ -422,3 +422,164 @@ h1, h2, h3, h4, h5, h6 {
 .empty-state-action .btn {
     margin-top: 0.25rem;
 }
+
+
+/* ==========================================
+   SPENDLY DASHBOARD
+========================================== */
+
+.dashboard-card {
+    background: var(--spendly-surface);
+    border: 1px solid var(--spendly-border);
+    border-radius: 20px;
+    padding: 24px;
+    transition: transform 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+}
+
+.dashboard-card-balance {
+    background: var(--spendly-primary);
+    border-color: var(--spendly-primary);
+    color: #ffffff;
+}
+
+.dashboard-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.dashboard-card-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--spendly-muted);
+}
+
+.dashboard-card-balance .dashboard-card-label {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.dashboard-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+}
+
+.dashboard-icon-balance {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+}
+
+.dashboard-icon-income {
+    background: rgba(22, 163, 106, 0.10);
+    color: var(--spendly-income);
+}
+
+.dashboard-icon-expense {
+    background: rgba(230, 92, 92, 0.10);
+    color: var(--spendly-expense);
+}
+
+.dashboard-icon-transactions {
+    background: rgba(83, 109, 254, 0.10);
+    color: var(--spendly-primary);
+}
+
+.dashboard-card-amount {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(1.25rem, 2vw, 1.7rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    overflow-wrap: anywhere;
+    margin-bottom: 10px;
+}
+
+.dashboard-card-balance .dashboard-card-amount {
+    color: #ffffff;
+}
+
+.dashboard-card-description {
+    font-size: 0.8rem;
+    color: var(--spendly-muted);
+}
+
+.dashboard-card-balance .dashboard-card-description {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.text-income {
+    color: var(--spendly-income) !important;
+}
+
+.text-expense {
+    color: var(--spendly-expense) !important;
+}
+
+.dashboard-section-card {
+    background: var(--spendly-surface);
+    border: 1px solid var(--spendly-border) !important;
+    overflow: hidden;
+}
+
+.dashboard-table thead th {
+    background: #FAFBFC;
+    color: var(--spendly-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--spendly-border);
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.dashboard-table tbody td {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-color: var(--spendly-border);
+}
+
+.transaction-name {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--spendly-text);
+}
+
+.category-badge {
+    display: inline-block;
+    background: #F3F5F8;
+    color: var(--spendly-muted);
+    font-size: 0.75rem;
+    padding: 6px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+    .dashboard-card {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .dashboard-card-top {
+        margin-bottom: 18px;
+    }
+
+    .dashboard-card-amount {
+        font-size: 1.35rem;
+    }
+
+    .dashboard-section-card > .d-flex {
+        padding: 20px !important;
+    }
+}
+
