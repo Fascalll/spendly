@@ -54,15 +54,27 @@
                         <label for="password" class="form-label small fw-medium text-dark mb-1">
                             Password
                         </label>
-                        <input
-                            type="password"
-                            class="form-control py-2 px-3"
-                            id="password"
-                            name="password"
-                            placeholder="Masukkan password"
-                            autocomplete="current-password"
-                            required
-                        >
+
+                        <div class="input-group">
+                            <input
+                                type="password"
+                                class="form-control py-2 px-3"
+                                id="password"
+                                name="password"
+                                placeholder="Masukkan password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary"
+                                onclick="togglePasswordVisibility('password', this)"
+                                aria-label="Tampilkan password"
+                            >
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">
@@ -88,4 +100,21 @@
 
     </div>
 </div>
+
+<script>
+    function togglePasswordVisibility(inputId, button) {
+        const passwordInput = document.getElementById(inputId);
+        const icon = button.querySelector('i');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.replace('bi-eye', 'bi-eye-slash');
+            button.setAttribute('aria-label', 'Sembunyikan password');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.replace('bi-eye-slash', 'bi-eye');
+            button.setAttribute('aria-label', 'Tampilkan password');
+        }
+    }
+</script>
 @endsection
