@@ -1,0 +1,9 @@
+kind: wasmer.io/App.v0
+name: spendly
+owner: morpheuszi
+package: .
+
+capabilities:
+  database:
+    engine: mysql
+
